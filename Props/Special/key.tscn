@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6mdyuoswvlvx"]
+
+[ext_resource type="Script" uid="uid://di20f1606rl4d" path="res://Props/Special/key.gd" id="1_gwsrb"]
+[ext_resource type="PackedScene" uid="uid://ddveaujnxfwi4" path="res://global.tscn" id="2_s17wb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brgs7"]
+
+[node name="Key" type="Area3D"]
+script = ExtResource("1_gwsrb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_brgs7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="Global" parent="." instance=ExtResource("2_s17wb")]

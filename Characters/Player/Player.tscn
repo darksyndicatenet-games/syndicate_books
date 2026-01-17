@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvtpjji0yerr8"]
+
+[ext_resource type="Script" uid="uid://dejq3i3b3hi8i" path="res://Characters/Player/Player.gd" id="1_ht6wf"]
+[ext_resource type="Texture2D" uid="uid://bww6p0aow5kw2" path="res://Characters/Player/crosshair006.png" id="2_6mep6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_ht6wf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_xc2g5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.141, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="HoverLabel" type="Label3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42012286, -1.9361782)
+billboard = 2
+text = "Yee"
+
+[node name="Hand" type="Marker3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123649836, -1.1944897)
+
+[node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13508677, -0.27770948)
+target_position = Vector3(0, 0, -4)
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0.8265635, 0.90775096, 1)
+
+[node name="DropRay" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.906575)
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
+
+[node name="Crosshair" type="Control" parent="Head/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="Head/Camera3D/Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6mep6")
+expand_mode = 1
