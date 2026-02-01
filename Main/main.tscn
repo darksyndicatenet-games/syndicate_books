@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bw686n6gpd8j3"]
+[gd_scene load_steps=13 format=3 uid="uid://bw686n6gpd8j3"]
 
 [ext_resource type="Texture2D" uid="uid://dswnlbeowcfmh" path="res://Main/sky_34_2k.png" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://dvtpjji0yerr8" path="res://Characters/Player/Player.tscn" id="2_2w1kt"]
 [ext_resource type="PackedScene" uid="uid://b6mdyuoswvlvx" path="res://Props/Special/key.tscn" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://ddveaujnxfwi4" path="res://global.tscn" id="4_eunhr"]
+[ext_resource type="PackedScene" uid="uid://dodmo4mjnpmjr" path="res://Assets_Polished/Shelf/red_book_generic_m.tscn" id="4_rj11h"]
 [ext_resource type="PackedScene" uid="uid://bqi7nuse41coo" path="res://Props/Door/door.tscn" id="5_k3v36"]
+[ext_resource type="PackedScene" uid="uid://bqwmakgvpki1n" path="res://floor_plan.tscn" id="6_liyct"]
+[ext_resource type="PackedScene" uid="uid://dnlegc07phs7w" path="res://Temp/placement.tscn" id="8_f6fdm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_50cra"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,22 +38,35 @@ shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="."]
 
+[node name="floor_plan" parent="Environment" instance=ExtResource("6_liyct")]
+
 [node name="Floor" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.34439, -1.2164497, -71.638916)
 material_override = SubResource("StandardMaterial3D_50cra")
 use_collision = true
-size = Vector3(65.201416, 0.060302734, 76.30469)
+size = Vector3(203.29463, 0.060302734, 245.82297)
+
+[node name="Ball" parent="Environment" instance=ExtResource("4_rj11h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4072113, -0.9344716, 8.4566345)
+collision_layer = 3
+collision_mask = 3
+mass = 5.0
+angular_damp = 0.5
 
 [node name="Player" parent="." instance=ExtResource("2_2w1kt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4973717, 0, 0.6666467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26419163, 0, 10.145217)
 
 [node name="Special" type="Node3D" parent="."]
 
 [node name="KeyMission" type="Node3D" parent="Special"]
 
 [node name="Key" parent="Special/KeyMission" instance=ExtResource("3_qvhan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.879653, 1.2966568, 4.502532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6881466, -0.73534083, 4.502532)
 
 [node name="Global" parent="." instance=ExtResource("4_eunhr")]
 
 [node name="Door" parent="." instance=ExtResource("5_k3v36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4508696, 0.53015137, -4.637019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.544987, 0.53015137, 18.49382)
+
+[node name="Placement" parent="." instance=ExtResource("8_f6fdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9825335, -0.57540345, 8.894716)

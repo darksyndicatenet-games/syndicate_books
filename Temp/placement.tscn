@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnlegc07phs7w"]
+
+[ext_resource type="Script" path="res://Temp/placement.gd" id="1_2ijmb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lje5s"]
+size = Vector3(1, 0.20062256, 1)
+
+[node name="Placement" type="Area3D"]
+script = ExtResource("1_2ijmb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1065979, 0)
+shape = SubResource("BoxShape3D_lje5s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.113586426, -0.0044555664)
+visible = false
+size = Vector3(1, 0.21520996, 0.97546387)
+
+[node name="ObjectPlaced" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2170153, 0.025157988)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqwmakgvpki1n"]
+
+[ext_resource type="PackedScene" uid="uid://dw7rf3v5b21bm" path="res://Assets/floor_plan.glb" id="1_8tp7x"]
+[ext_resource type="Script" uid="uid://n7mvqh53u4ob" path="res://floor_plan.gd" id="2_pnv30"]
+[ext_resource type="PackedScene" uid="uid://ddveaujnxfwi4" path="res://global.tscn" id="3_cb5ss"]
+
+[node name="floor_plan" instance=ExtResource("1_8tp7x")]
+script = ExtResource("2_pnv30")
+
+[node name="slider_door1" parent="." index="4"]
+transform = Transform3D(-0.4991114, 0, 0.8665376, 0, 1, 0, -0.8665376, 0, -0.4991114, -2.170979, 1.3212105, 0.1501255)
+
+[node name="slider_door2" parent="." index="5"]
+transform = Transform3D(-0.46770787, 0, -0.88388324, 0, 1, 0, 0.88388324, 0, -0.46770787, 1.5668476, 1.253881, 0.17201482)
+
+[node name="Global" parent="." index="7" instance=ExtResource("3_cb5ss")]

@@ -7,8 +7,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("groudRay") groups=["player"]]
 script = ExtResource("1_ht6wf")
+dropBelowPlayer = true
+groudRay = NodePath("Head/Camera3D/DropRay")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -24,26 +26,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.141, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
-[node name="HoverLabel" type="Label3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42012286, -1.9361782)
-billboard = 2
+[node name="HoverLabel" type="Label" parent="Head/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -11.5
+offset_right = 14.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Yee"
 
 [node name="Hand" type="Marker3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123649836, -1.1944897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123649836, -1.4251566)
 
 [node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13508677, -0.27770948)
 target_position = Vector3(0, 0, -4)
+collision_mask = 2
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0.8265635, 0.90775096, 1)
 
 [node name="DropRay" type="RayCast3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.906575)
-target_position = Vector3(0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125566, -1.906575)
+target_position = Vector3(0, -0.1, 0)
 collide_with_areas = true
 
-[node name="Crosshair" type="Control" parent="Head/Camera3D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="Head/Camera3D/Crosshair"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Crosshair"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
